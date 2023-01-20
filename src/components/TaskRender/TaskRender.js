@@ -18,6 +18,7 @@ export const TaskRender = observer((props) => {
     const [selectedOption, setSelectedOption] = useState("");
     const [id, setId] = useState("");
     const [editMode, setEditMode] = useState(false);
+    const [taskValue, setTaskValue] = useState("");
 
     const [parent] = useAutoAnimate();
 
@@ -45,12 +46,13 @@ export const TaskRender = observer((props) => {
                                             key={item.id}
                                             className="textStyle"
                                             onClick={() => {
+                                                setTaskValue(item.name);
                                                 store.setEditMode(item.id);
                                                 setId(item.id);
                                                 store.setShown(item.id);
                                             }}
                                         >
-                                            {item.name} {item.isShown}
+                                            {item.name}
                                         </span>
                                         <div>
                                             <IconButton
@@ -113,7 +115,7 @@ export const TaskRender = observer((props) => {
                                                     {option}
                                                 </MenuItem>
                                             ))}
-                                        </Menu>{" "}
+                                        </Menu>
                                     </>
                                 ) : (
                                     ""
@@ -124,6 +126,8 @@ export const TaskRender = observer((props) => {
                                     Option={selectedOption}
                                     IsShown={item.isShown}
                                     Id={id}
+                                    FuncTaskValue={setTaskValue}
+                                    TaskValue={taskValue}
                                 />
                             </ul>
                         ) : (

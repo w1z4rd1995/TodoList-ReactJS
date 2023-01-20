@@ -9,8 +9,6 @@ import "./styles.css";
 export const AllTabs = observer(() => {
     const [activeTab, setActiveTab] = useState("firstTab");
 
-    console.log(activeTab);
-
     return (
         <>
             <div className="tabs">

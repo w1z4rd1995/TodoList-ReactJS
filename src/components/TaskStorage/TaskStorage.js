@@ -43,7 +43,7 @@ export class TaskStorage {
 
     setEditMode(id) {
         this.allTasksStorage = this.allTasksStorage.map((item) => {
-            if (item.id === id && !item.editMode) {
+            if (item.id === id) {
                 return { ...item, editMode: true };
             } else return { ...item, editMode: false };
         });
