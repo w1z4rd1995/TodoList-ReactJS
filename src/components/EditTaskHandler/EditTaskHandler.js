@@ -9,15 +9,22 @@ export const EditTaskHandler = observer((props) => {
     console.log(props.Option);
     console.log(props.IsShown);
 
-    if (props.Option === "Edit" && props.IsShown === true) {
+    // if (props.Option === "Edit" && props.IsShown === true) {
+    if (props.IsShown === true) {
         return (
             <div className="EditStyle">
+                <input
+                    type="text"
+                    placeholder="Измените текст задачи..."
+                    onChange={(e) => setEditText(e.target.value)}
+                ></input>
                 <input
                     type="button"
                     value="Cохранить"
                     onClick={() => {
                         store.editTaskName(props.Id, editText);
                         setEditText("");
+                        store.setEditMode(props.id);
                     }}
                 ></input>
                 <input
@@ -27,11 +34,6 @@ export const EditTaskHandler = observer((props) => {
                         store.setShown(props.Id);
                         setEditText("");
                     }}
-                ></input>
-                <input
-                    type="text"
-                    placeholder="Измените текст задачи..."
-                    onChange={(e) => setEditText(e.target.value)}
                 ></input>
             </div>
         );

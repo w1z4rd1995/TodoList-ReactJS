@@ -17,6 +17,7 @@ export const TaskRender = observer((props) => {
     const [open, setOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState("");
     const [id, setId] = useState("");
+    const [editMode, setEditMode] = useState(false);
 
     const [parent] = useAutoAnimate();
 
@@ -38,62 +39,88 @@ export const TaskRender = observer((props) => {
                     store.allTasksStorage.map((item) =>
                         item.isCompleted === false ? (
                             <ul key={item.id} className="ul">
-                                <span key={item.id} className="textStyle">
-                                    {item.name}
-                                </span>
-                                <div>
-                                    <IconButton
-                                        color="success"
-                                        size="small"
-                                        onClick={() =>
-                                            store.completedTask(item.id)
-                                        }
-                                    >
-                                        <DoneOutlinedIcon />
-                                    </IconButton>
-                                </div>
-                                <div>
-                                    <IconButton
-                                        color="primary"
-                                        size="small"
-                                        onClick={(e) => {
-                                            setOpen(true);
-                                            setId(item.id);
-                                            setAnchorEl(e.currentTarget);
-                                        }}
-                                    >
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                </div>
-                                <Menu /* рендер меню  */
-                                    anchorEl={anchorEl}
-                                    open={open}
-                                    onClose={handleClose}
-                                    PaperProps={{
-                                        style: {
-                                            maxHeight: ITEM_HEIGHT * 4.5,
-                                            width: "150px",
-                                        },
-                                    }}
-                                >
-                                    {options.map((option) => (
-                                        <MenuItem
-                                            key={option}
+                                {item.editMode === false ? (
+                                    <>
+                                        <span
+                                            key={item.id}
+                                            className="textStyle"
                                             onClick={() => {
-                                                setSelectedOption(option);
-                                                setOpen(false);
-                                                store.setShown(id);
-                                                if (option === "Delete") {
-                                                    store.deleteTask(id);
-                                                }
+                                                store.setEditMode(item.id);
+                                                setId(item.id);
+                                                store.setShown(item.id);
                                             }}
                                         >
-                                            {option}
-                                        </MenuItem>
-                                    ))}
-                                </Menu>
+                                            {item.name} {item.isShown}
+                                        </span>
+                                        <div>
+                                            <IconButton
+                                                color="success"
+                                                size="small"
+                                                onClick={() => {
+                                                    store.completedTask(
+                                                        item.id
+                                                    );
+                                                }}
+                                            >
+                                                <DoneOutlinedIcon />
+                                            </IconButton>
+                                        </div>
+                                        <div>
+                                            <IconButton
+                                                color="primary"
+                                                size="small"
+                                                onClick={(e) => {
+                                                    setOpen(true);
+                                                    setId(item.id);
+                                                    setAnchorEl(
+                                                        e.currentTarget
+                                                    );
+                                                }}
+                                            >
+                                                <MoreVertIcon />
+                                            </IconButton>
+                                        </div>
+                                        <Menu /* рендер меню  */
+                                            anchorEl={anchorEl}
+                                            open={open}
+                                            onClose={handleClose}
+                                            PaperProps={{
+                                                style: {
+                                                    maxHeight:
+                                                        ITEM_HEIGHT * 4.5,
+                                                    width: "150px",
+                                                },
+                                            }}
+                                        >
+                                            {options.map((option) => (
+                                                <MenuItem
+                                                    key={option}
+                                                    onClick={() => {
+                                                        setSelectedOption(
+                                                            option
+                                                        );
+                                                        setOpen(false);
+                                                        store.setShown(id);
+                                                        if (
+                                                            option === "Delete"
+                                                        ) {
+                                                            store.deleteTask(
+                                                                id
+                                                            );
+                                                        }
+                                                    }}
+                                                >
+                                                    {option}
+                                                </MenuItem>
+                                            ))}
+                                        </Menu>{" "}
+                                    </>
+                                ) : (
+                                    ""
+                                )}
 
                                 <EditTaskHandler
+                                    SetEditMode={setEditMode}
                                     Option={selectedOption}
                                     IsShown={item.isShown}
                                     Id={id}

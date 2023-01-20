@@ -3,12 +3,13 @@ import { createContext } from "react";
 import uuid4 from "uuid4";
 
 export class TaskDescription {
-    constructor(id, name, uploadDate, isShown, isCompleted) {
+    constructor(id, name, uploadDate, isShown, isCompleted, editMode) {
         this.id = id;
         this.name = name;
         this.uploadDate = uploadDate;
         this.isShown = isShown;
         this.isCompleted = isCompleted;
+        this.editMode = editMode;
     }
 }
 
@@ -27,6 +28,7 @@ export class TaskStorage {
             newTask.id = uuid4();
             newTask.isShown = false;
             newTask.isCompleted = false;
+            newTask.editMode = false;
             this.allTasksStorage.push(newTask);
             this.allTasksNumber += 1;
         } else return console.error("ошибка");
@@ -39,6 +41,14 @@ export class TaskStorage {
         );
     }
 
+    setEditMode(id) {
+        this.allTasksStorage = this.allTasksStorage.map((item) => {
+            if (item.id === id && !item.editMode) {
+                return { ...item, editMode: true };
+            } else return { ...item, editMode: false };
+        });
+    }
+
     setShown(id) {
         this.allTasksStorage = this.allTasksStorage.map((item) => {
             if (item.id === id && item.isShown === false) {
@@ -48,6 +58,7 @@ export class TaskStorage {
     }
 
     editTaskName(id, text) {
+        console.log(id);
         this.allTasksStorage = this.allTasksStorage.map((item) => {
             if (item.id === id && text !== "") {
                 return { ...item, name: text, isShown: false };
