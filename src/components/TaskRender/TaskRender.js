@@ -40,7 +40,7 @@ export const TaskRender = observer((props) => {
                     store.allTasksStorage.map((item) =>
                         item.isCompleted === false ? (
                             <ul key={item.id} className="ul">
-                                {item.editMode === false ? (
+                                {item.isShown === false ? (
                                     <>
                                         <span
                                             key={item.id}
@@ -50,6 +50,7 @@ export const TaskRender = observer((props) => {
                                                 store.setEditMode(item.id);
                                                 setId(item.id);
                                                 store.setShown(item.id);
+                                                setEditMode(item.editMode);
                                             }}
                                         >
                                             {item.name}
@@ -82,45 +83,37 @@ export const TaskRender = observer((props) => {
                                                 <MoreVertIcon />
                                             </IconButton>
                                         </div>
-                                        <Menu /* рендер меню  */
-                                            anchorEl={anchorEl}
-                                            open={open}
-                                            onClose={handleClose}
-                                            PaperProps={{
-                                                style: {
-                                                    maxHeight:
-                                                        ITEM_HEIGHT * 4.5,
-                                                    width: "150px",
-                                                },
-                                            }}
-                                        >
-                                            {options.map((option) => (
-                                                <MenuItem
-                                                    key={option}
-                                                    onClick={() => {
-                                                        setSelectedOption(
-                                                            option
-                                                        );
-                                                        setOpen(false);
-                                                        store.setShown(id);
-                                                        if (
-                                                            option === "Delete"
-                                                        ) {
-                                                            store.deleteTask(
-                                                                id
-                                                            );
-                                                        }
-                                                    }}
-                                                >
-                                                    {option}
-                                                </MenuItem>
-                                            ))}
-                                        </Menu>
                                     </>
                                 ) : (
                                     ""
                                 )}
-
+                                <Menu
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    PaperProps={{
+                                        style: {
+                                            maxHeight: ITEM_HEIGHT * 4.5,
+                                            width: "150px",
+                                        },
+                                    }}
+                                >
+                                    {options.map((option) => (
+                                        <MenuItem
+                                            key={option}
+                                            onClick={() => {
+                                                setSelectedOption(option);
+                                                setOpen(false);
+                                                store.setShown(id);
+                                                if (option === "Delete") {
+                                                    store.deleteTask(id);
+                                                }
+                                            }}
+                                        >
+                                            {option}
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
                                 <EditTaskHandler
                                     SetEditMode={setEditMode}
                                     Option={selectedOption}
@@ -128,6 +121,7 @@ export const TaskRender = observer((props) => {
                                     Id={id}
                                     FuncTaskValue={setTaskValue}
                                     TaskValue={taskValue}
+                                    EditMode={editMode}
                                 />
                             </ul>
                         ) : (
