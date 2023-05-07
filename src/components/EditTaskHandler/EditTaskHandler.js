@@ -1,12 +1,8 @@
 import { observer } from "mobx-react-lite";
 import { store } from "../TaskStorage/TaskStorage";
-import { useState } from "react";
-
 import "./styles.css";
 
 export const EditTaskHandler = observer((props) => {
-    // console.log(props.IsShown);
-    // if (props.Option === "Edit" && props.IsShown === true) {
     if (props.IsShown === true) {
         return (
             <div className="EditStyle">
@@ -26,7 +22,6 @@ export const EditTaskHandler = observer((props) => {
                         value="Cохранить"
                         onClick={() => {
                             store.editTaskName(props.Id, props.TaskValue);
-                            // setEditText("");
                             props.FuncTaskValue("");
                             store.setEditMode(props.id);
                         }}

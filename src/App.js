@@ -3,23 +3,19 @@ import { observer } from "mobx-react-lite";
 import { StoreContext } from "./components/TaskStorage/TaskStorage";
 import { ToastContainer, toast } from "react-toastify";
 import { AllTabs } from "./components/Tabs/AllTabs";
-
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 const App = observer(() => {
     const store = useContext(StoreContext);
-
     const [inputTask, setInputTask] = useState("");
 
     const notifySuccess = (notifyText) => {
         toast.success(notifyText);
     };
+
     const notifyError = (notifyText) => {
         toast.error(notifyText);
-    };
-    const notifyInfo = (notifyText) => {
-        toast.info(notifyText);
     };
 
     return (

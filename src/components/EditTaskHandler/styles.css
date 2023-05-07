@@ -1,10 +1,7 @@
 .EditStyle {
     width: 95%;
     display: flex;
-    /* justify-content: space-between; */
-    /* justify-content: center; */
     padding-left: 10px;
-    /* align-self: center; */
     font-size: 1.2rem;
 }
 
@@ -12,11 +9,9 @@
     width: 90%;
     height: 30px;
     font-size: 1.2rem;
-    /* background: transparent; */
-    /* color: white; */
+
     border: none;
-    /* flex-basis: 80%; */
-    /* font-weight: lighter; */
+
     padding: 0 0 0 5px;
     border-radius: 5px;
     align-items: center;
@@ -29,7 +24,6 @@
 .saveButton {
     height: 100%;
     border: none;
-    /* padding: 0 5px 0 5px; */
     background-color: #1dd42c;
     color: white;
     border-radius: 10px;
@@ -42,6 +36,7 @@
 .saveButton:active {
     background: #077e03f6;
 }
+
 .cancelButton {
     height: 100%;
     border: none;
@@ -57,10 +52,7 @@
 }
 
 .save {
-    /* border: none; */
     height: auto;
-    /* height: 26px; */
-    /* align-items: center; */
     display: flex;
     justify-content: center;
 }
@@ -70,5 +62,4 @@
     display: flex;
     justify-content: center;
     height: auto;
-    /* border: none; */
 }

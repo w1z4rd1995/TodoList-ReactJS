@@ -3,7 +3,6 @@ import { observer } from "mobx-react-lite";
 import { TaskRender } from "../TaskRender/TaskRender";
 import { CompletedTask } from "../CompletedTask/CompletedTask";
 import { store } from "../TaskStorage/TaskStorage";
-
 import "./styles.css";
 
 export const AllTabs = observer(() => {

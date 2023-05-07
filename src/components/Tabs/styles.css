@@ -1,6 +1,4 @@
 .tabs {
-    /* margin-right: auto; */
-    /* padding-right: 20px; */
     width: 600px;
     height: 40px;
     background: #000000;
@@ -12,7 +10,6 @@
     color: #e8f0f2;
     border-radius: 20px;
     cursor: pointer;
-    /* transition: all 2s; */
     box-shadow: 2px 4px 16px 2px rgba(0, 255, 255, 0.7);
 }
 
@@ -23,7 +20,6 @@ div.tabs div.active {
 div.tabs div {
     width: 50%;
     height: 100%;
-    /* padding-left: 10px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,6 +27,7 @@ div.tabs div {
     font-size: 1rem;
     font-family: sans-serif;
 }
+
 div.tabs div:nth-child(2) {
     border-radius: 0px 20px 20px 0px;
 }

@@ -8,7 +8,6 @@
         2px 4px 16px 5px rgba(0, 255, 255, 0.7);
     border: solid 2px #064134;
     border-radius: 20px;
-    /* overflow-y: auto; */
     color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
@@ -18,12 +17,10 @@
 }
 
 .ul {
-    /* right: 50%; */
     margin: 10px 0px 10px 0px;
     width: 90%;
     min-height: 50px;
     padding: 0px 0px 0px 0px;
-    /* margin: 0; */
     border: solid 1px rgba(0, 255, 255, 0.7);
     background: none;
     color: white;
@@ -32,7 +29,6 @@
     border-radius: 10px;
     flex-direction: row;
     align-items: center;
-    /* flex-wrap: nowrap; */
 }
 
 .textStyle {
@@ -47,7 +43,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     overflow-y: overlay;
 }

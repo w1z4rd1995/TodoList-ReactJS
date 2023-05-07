@@ -19,9 +19,7 @@ export const TaskRender = observer((props) => {
     const [id, setId] = useState("");
     const [editMode, setEditMode] = useState(false);
     const [taskValue, setTaskValue] = useState("");
-
     const [parent] = useAutoAnimate();
-
     const options = ["Edit", "Delete"];
     const ITEM_HEIGHT = 48;
 
@@ -30,7 +28,6 @@ export const TaskRender = observer((props) => {
             setOpen(false);
         }
     };
-    /* рендер списка всех задач*/
     return (
         <div className="newTask">
             <div ref={parent} className="flexUl">
