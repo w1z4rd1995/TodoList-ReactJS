@@ -1,4 +1,5 @@
 import { store } from "../TaskStorage/TaskStorage";
+
 export const CompletedTask = () => {
     return (
         <div className="newTask">

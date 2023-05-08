@@ -2,9 +2,7 @@ import "./styles.css";
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { store } from "../TaskStorage/TaskStorage";
-
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
